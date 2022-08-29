@@ -2,18 +2,25 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 
 void main() {
-  return runApp(
-    MaterialApp(
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
       home: Scaffold(
-        backgroundColor: Colors.red,
+        backgroundColor: Colors.teal,
         appBar: AppBar(
-          title: Text('Dicee'),
-          backgroundColor: Colors.red,
+          title: const Text('Dice'),
+          backgroundColor: Colors.teal,
         ),
-        body: DicePage(),
+        body: const DicePage(),
       ),
-    ),
-  );
+    );
+  }
 }
 
 class DicePage extends StatefulWidget {
@@ -41,30 +48,34 @@ class _DicePageState extends State<DicePage> {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Container(
-            width:
-                MediaQuery.of(context).size.width * 0.5, //50% width of screen
-            child: TextButton(
-              onPressed: () {
-                changeLeftNumber();
-              },
-              child: Image.asset('images/dice$leftDiceNumber.png'),
+      child: Padding(
+        padding: const EdgeInsets.all(38.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            SizedBox(
+              width:
+                  MediaQuery.of(context).size.width * 0.5, //50% width of screen
+              child: TextButton(
+                onPressed: () {
+                  changeLeftNumber();
+                },
+                child: Image.asset('images/dice$leftDiceNumber.png'),
+              ),
             ),
-          ),
-          Container(
-            width:
-                MediaQuery.of(context).size.width * 0.5, //50% width of screen
-            child: TextButton(
-              onPressed: () {
-                changeRightNumber();
-              },
-              child: Image.asset('images/dice$rightDiceNumber.png'),
+            const Divider(color: Colors.white),
+            SizedBox(
+              width:
+                  MediaQuery.of(context).size.width * 0.5, //50% width of screen
+              child: TextButton(
+                onPressed: () {
+                  changeRightNumber();
+                },
+                child: Image.asset('images/dice$rightDiceNumber.png'),
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
